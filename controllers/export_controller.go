@@ -47,7 +47,7 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/controller/controllerutil"
 	ctrllog "sigs.k8s.io/controller-runtime/pkg/log"
 
-	primerv1alpha1 "github.com/cooktheryan/gitops-primer/api/v1alpha1"
+	primerv1alpha1 "github.com/kubesaw/export-operator/api/v1alpha1"
 )
 
 const (
@@ -1128,13 +1128,13 @@ func getSecurityContext() (*corev1.SecurityContext, error) {
 func (r *ExportReconciler) SetupWithManager(mgr ctrl.Manager) error {
 	DownloaderImage := os.Getenv("DownloaderImageName")
 	if DownloaderImage == "" {
-		DownloaderImage = "quay.io/migtools/gitops-primer:v0.0.11"
+		DownloaderImage = "quay.io/kubesaw/export-operator:v0.0.11"
 	}
 	r.DownloaderImage = DownloaderImage
 
 	ExportImage := os.Getenv("ExportImageName")
 	if ExportImage == "" {
-		ExportImage = "quay.io/migtools/gitops-primer-export:v0.0.11"
+		ExportImage = "quay.io/kubesaw/export-operator-export:v0.0.11"
 	}
 	r.ExportImage = ExportImage
 

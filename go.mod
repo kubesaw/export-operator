@@ -1,9 +1,10 @@
-module github.com/cooktheryan/gitops-primer
+module github.com/kubesaw/export-operator
 
 go 1.17
 
 require (
 	github.com/asaskevich/govalidator v0.0.0-20190424111038-f61b66f89f4a
+	github.com/cooktheryan/gitops-primer v0.0.0-20220805191006-8ed0c1266b43
 	github.com/evanphx/json-patch v4.11.0+incompatible
 	github.com/konveyor/crane-lib v0.0.8
 	github.com/onsi/ginkgo v1.16.4
