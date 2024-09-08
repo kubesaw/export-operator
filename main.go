@@ -178,7 +178,7 @@ func addPodSecurityPrivilegedLabels() error {
 	}
 	minVer := version.Minor
 	if !valid.IsInt(minVer) {
-		minVer = minVer[:len(minVer) - 1]
+		minVer = minVer[:len(minVer)-1]
 	}
 	minor, err := strconv.Atoi(minVer)
 	if err != nil {
@@ -190,10 +190,10 @@ func addPodSecurityPrivilegedLabels() error {
 		return nil
 	}
 
-	operatorNamespace, err := clientset.CoreV1().Namespaces().Get(context.TODO(), "gitops-primer-system", metav1.GetOptions{})
+	operatorNamespace, err := clientset.CoreV1().Namespaces().Get(context.TODO(), "snapshot-operator-system", metav1.GetOptions{})
 	if err != nil {
 		if errors.IsNotFound(err) {
-			setupLog.Info("gitops-primer-system namespace not found. If installing operator in any other namespace, please add appropriate namespace labels to make sure primer works in OpenShift environment 4.11+")
+			setupLog.Info("snapshot-operator-system namespace not found. If installing operator in any other namespace, please add appropriate namespace labels to make sure primer works in OpenShift environment 4.11+")
 			return nil
 		}
 		setupLog.Error(err, "problem getting operator namespace")

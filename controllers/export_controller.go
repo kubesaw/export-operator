@@ -79,7 +79,7 @@ type ExportReconciler struct {
 //+kubebuilder:rbac:groups=route.openshift.io,resources=routes,verbs=get;list;watch;create;update;patch;delete
 //+kubebuilder:rbac:groups=networking.k8s.io,resources=networkpolicies,verbs=get;list;watch;create;update;patch;delete
 //+kubebuilder:rbac:groups=*,resources=*,verbs=get;list
-//+kubebuilder:rbac:groups="",resourceNames=gitops-primer-system,resources=namespaces,verbs=get;update
+//+kubebuilder:rbac:groups="",resourceNames=snapshot-operator-system,resources=namespaces,verbs=get;update
 
 // Reconcile is part of the main kubernetes reconciliation loop which aims to
 // move the current state of the cluster closer to the desired state.
@@ -1128,13 +1128,13 @@ func getSecurityContext() (*corev1.SecurityContext, error) {
 func (r *ExportReconciler) SetupWithManager(mgr ctrl.Manager) error {
 	DownloaderImage := os.Getenv("DownloaderImageName")
 	if DownloaderImage == "" {
-		DownloaderImage = "quay.io/kubesaw/export-operator:v0.0.11"
+		DownloaderImage = "quay.io/kubesaw/snapshot-operator:v0.0.11"
 	}
 	r.DownloaderImage = DownloaderImage
 
 	ExportImage := os.Getenv("ExportImageName")
 	if ExportImage == "" {
-		ExportImage = "quay.io/kubesaw/export-operator-export:v0.0.11"
+		ExportImage = "quay.io/kubesaw/snapshot-operator-export:v0.0.11"
 	}
 	r.ExportImage = ExportImage
 

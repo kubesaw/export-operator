@@ -1,7 +1,7 @@
 # Build the manager binary
 FROM registry.access.redhat.com/ubi8/go-toolset:1.15.14 as builder
 
-RUN mkdir -p $APP_ROOT/src/github.com/kubesaw/export-operator
+RUN mkdir -p $APP_ROOT/src/github.com/kubesaw/snapshot-operator
 WORKDIR $APP_ROOT/src/github.com/kubesaw/export-operator
 # Copy the Go Modules manifests
 COPY go.mod go.mod
