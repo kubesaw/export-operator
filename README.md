@@ -1,12 +1,12 @@
 [![Validate Primer](https://github.com/cooktheryan/gitops-primer/actions/workflows/validate-primer.yaml/badge.svg)](https://github.com/cooktheryan/gitops-primer/actions/workflows/validate-primer.yaml)
 
-# export-operator
-Export Operator is an operator based on GitOps Primer (https://github.com/migtools/gitops-primer) that can be deployed 
+# snapshot-operator
+Snapshot Operator is an operator based on GitOps Primer (https://github.com/migtools/gitops-primer) that can be deployed 
 within a Kubernetes environment to export objects out of the cluster and either make them available for download or
 store them within a Git repository.
 
 ## Developing
-If you would like to test or develop using the Export Operator deploy Minikube(https://minikube.sigs.k8s.io/docs/start/) or 
+If you would like to test or develop using the Snapshot Operator deploy Minikube(https://minikube.sigs.k8s.io/docs/start/) or 
 Kind(https://kind.sigs.k8s.io/) and run the following.
 
 ```
@@ -21,10 +21,10 @@ make deploy
 ```
 
 ## Deploying with OLM
-If you would like to run the Export Operator within your environment that has OLM
+If you would like to run the Snapshot Operator within your environment that has OLM
 ```
-oc create ns export-operator-system
-operator-sdk run bundle quay.io/kubesaw/export-operator-bundle:v0.0.1 --namespace export-operator-system
+oc create ns snapshot-operator-system
+operator-sdk run bundle quay.io/kubesaw/snapshot-operator-bundle:v0.0.1 --namespace snapshot-operator-system
 ```
 
 ## Running

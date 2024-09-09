@@ -20,10 +20,10 @@ make -C webhook image
 # We are using a special tag that should never be pushed to a repo so that it's
 # obvious if we try to run a container other than these intended ones.
 IMAGES=(
-        "quay.io/migtools/gitops-primer:latest"
-        "quay.io/migtools/gitops-primer-export:latest"
-        "quay.io/migtools/gitops-primer-downloader:latest"
-        "quay.io/migtools/gitops-primer-webhook:latest"
+        "quay.io/kubesaw/snapshot-operator:latest"
+        "quay.io/kubesaw/snapshot-operator-export:latest"
+        "quay.io/kubesaw/snapshot-operator-downloader:latest"
+        "quay.io/kubesaw/snapshot-operator-webhook:latest"
 )
 for i in "${IMAGES[@]}"; do
     kind load docker-image "${i}"

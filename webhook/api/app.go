@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
-	soapi "github.com/kubesaw/snapshot-operator/api/v1alpha1"
+	primerv1alpha1 "github.com/cooktheryan/gitops-primer/api/v1alpha1"
 	admissionv1 "k8s.io/api/admission/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
@@ -31,7 +31,7 @@ func (app *App) HandleMutate(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// unmarshal the export from the AdmissionRequest
-	export := &soapi.Export{}
+	export := &primerv1alpha1.Export{}
 	if err := json.Unmarshal(admissionReview.Request.Object.Raw, export); err != nil {
 		app.HandleError(w, r, fmt.Errorf("unmarshal to export: %v", err))
 		return

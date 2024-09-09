@@ -47,7 +47,7 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/controller/controllerutil"
 	ctrllog "sigs.k8s.io/controller-runtime/pkg/log"
 
-	primerv1alpha1 "github.com/kubesaw/export-operator/api/v1alpha1"
+	primerv1alpha1 "github.com/kubesaw/snapshot-operator/api/v1alpha1"
 )
 
 const (
