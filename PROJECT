@@ -4,8 +4,8 @@ layout:
 plugins:
   manifests.sdk.operatorframework.io/v2: {}
   scorecard.sdk.operatorframework.io/v2: {}
-projectName: gitops-primer
-repo: github.com/cooktheryan/gitops-primer
+projectName: snapshot-operator
+repo: github.com/kubesaw/snapshot-operator
 resources:
 - api:
     crdVersion: v1
@@ -14,7 +14,7 @@ resources:
   domain: gitops.io
   group: primer
   kind: Export
-  path: github.com/cooktheryan/gitops-primer/api/v1alpha1
+  path: github.com/kubesaw/snapshot-operator/api/v1alpha1
   version: v1alpha1
   webhooks:
     defaulting: true

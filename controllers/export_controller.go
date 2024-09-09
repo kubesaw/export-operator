@@ -51,8 +51,8 @@ import (
 )
 
 const (
-	gitopsPrimerLabel = "openshift.gitops.primer"
-	finalizer         = "openshift.gitops.primer"
+	snapshotOperatorLabel = "openshift.snapshot.operator"
+	finalizer             = "openshift.snapshot.operator"
 )
 
 // ExportReconciler reconciles a Export object
@@ -642,7 +642,7 @@ func (r *ExportReconciler) jobGitForExport(m *primerv1alpha1.Export, securityCon
 			Name:      "primer-export-" + m.Name,
 			Namespace: m.Namespace,
 			Labels: map[string]string{
-				gitopsPrimerLabel: "true",
+				snapshotOperatorLabel: "true",
 			},
 		},
 		Spec: batchv1.JobSpec{
@@ -701,7 +701,7 @@ func (r *ExportReconciler) jobDownloadForExport(m *primerv1alpha1.Export, securi
 			Name:      "primer-export-" + m.Name,
 			Namespace: m.Namespace,
 			Labels: map[string]string{
-				gitopsPrimerLabel: "true",
+				snapshotOperatorLabel: "true",
 			},
 		},
 		Spec: batchv1.JobSpec{
@@ -764,7 +764,7 @@ func (r *ExportReconciler) saGenerate(m *primerv1alpha1.Export) *corev1.ServiceA
 				oauthRedirectAnnotation: oauthRedirectValue,
 			},
 			Labels: map[string]string{
-				gitopsPrimerLabel: "true",
+				snapshotOperatorLabel: "true",
 			},
 		},
 	}
@@ -780,7 +780,7 @@ func (r *ExportReconciler) routeGenerate(m *primerv1alpha1.Export) *routev1.Rout
 			Name:      "primer-export-" + m.Name,
 			Namespace: m.Namespace,
 			Labels: map[string]string{
-				gitopsPrimerLabel: "true",
+				snapshotOperatorLabel: "true",
 			},
 		},
 		Spec: routev1.RouteSpec{
@@ -816,7 +816,7 @@ func (r *ExportReconciler) secretGenerate(m *primerv1alpha1.Export) *corev1.Secr
 			Name:      "primer-export-" + m.Name,
 			Namespace: m.Namespace,
 			Labels: map[string]string{
-				gitopsPrimerLabel: "true",
+				snapshotOperatorLabel: "true",
 			},
 		},
 		Type: "Opaque",
@@ -836,7 +836,7 @@ func (r *ExportReconciler) pvcGenerate(m *primerv1alpha1.Export) *corev1.Persist
 			Name:      "primer-export-" + m.Name,
 			Namespace: m.Namespace,
 			Labels: map[string]string{
-				gitopsPrimerLabel: "true",
+				snapshotOperatorLabel: "true",
 			},
 		},
 		Spec: corev1.PersistentVolumeClaimSpec{
@@ -860,7 +860,7 @@ func (r *ExportReconciler) clusterRoleGenerate(m *primerv1alpha1.Export) *rbacv1
 		ObjectMeta: metav1.ObjectMeta{
 			Name: "primer-export-" + m.Namespace + "-" + m.Name,
 			Labels: map[string]string{
-				gitopsPrimerLabel: "true",
+				snapshotOperatorLabel: "true",
 			},
 		},
 		Rules: []rbacv1.PolicyRule{
@@ -882,7 +882,7 @@ func (r *ExportReconciler) clusterRoleBindingGenerate(m *primerv1alpha1.Export) 
 		ObjectMeta: metav1.ObjectMeta{
 			Name: "primer-export-" + m.Namespace + "-" + m.Name,
 			Labels: map[string]string{
-				gitopsPrimerLabel: "true",
+				snapshotOperatorLabel: "true",
 			},
 		},
 		RoleRef: rbacv1.RoleRef{
@@ -908,7 +908,7 @@ func (r *ExportReconciler) svcGenerate(m *primerv1alpha1.Export) *corev1.Service
 				"service.alpha.openshift.io/serving-cert-secret-name": "primer-export-" + m.Name + "-tls",
 			},
 			Labels: map[string]string{
-				gitopsPrimerLabel: "true",
+				snapshotOperatorLabel: "true",
 			},
 		},
 		Spec: corev1.ServiceSpec{
@@ -945,7 +945,7 @@ func (r *ExportReconciler) deploymentGenerate(m *primerv1alpha1.Export, security
 			Name:      "primer-export-" + m.Name,
 			Namespace: m.Namespace,
 			Labels: map[string]string{
-				gitopsPrimerLabel: "true",
+				snapshotOperatorLabel: "true",
 			},
 		},
 		Spec: appsv1.DeploymentSpec{
@@ -963,7 +963,7 @@ func (r *ExportReconciler) deploymentGenerate(m *primerv1alpha1.Export, security
 						"app.kubernetes.io/name":      "primer-export-" + m.Name,
 						"app.kubernetes.io/component": "primer-export-" + m.Name,
 						"app.kubernetes.io/part-of":   "primer-export",
-						gitopsPrimerLabel:             "true",
+						snapshotOperatorLabel:         "true",
 					},
 				},
 				Spec: corev1.PodSpec{
@@ -1048,7 +1048,7 @@ func (r *ExportReconciler) netPolGenerate(m *primerv1alpha1.Export) *networkingv
 			Name:      "primer-export-" + m.Name,
 			Namespace: m.Namespace,
 			Labels: map[string]string{
-				gitopsPrimerLabel: "true",
+				snapshotOperatorLabel: "true",
 			},
 		},
 		Spec: networkingv1.NetworkPolicySpec{
