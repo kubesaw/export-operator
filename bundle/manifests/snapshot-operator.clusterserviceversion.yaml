@@ -21,7 +21,7 @@ metadata:
     operatorframework.io/suggested-namespace: snapshot-operator-system
     operators.operatorframework.io/builder: operator-sdk-v1.18.0+git
     operators.operatorframework.io/project_layout: go.kubebuilder.io/v3
-  name: export-operator.v0.0.11
+  name: snapshot-operator.v0.0.11
   namespace: snapshot-operator-system
 spec:
   apiservicedefinitions: {}
