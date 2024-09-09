@@ -22,7 +22,7 @@ spec:
         # TODO: env var/kustomize this
         # NOTE: update this if using different image
         imagePullPolicy: IfNotPresent
-        image: quay.io/migtools/snapshot-operator-webhook:v0.0.11
+        image: quay.io/kubesaw/snapshot-operator-webhook:v0.0.11
         ports:
         - containerPort: 8000
         volumeMounts:

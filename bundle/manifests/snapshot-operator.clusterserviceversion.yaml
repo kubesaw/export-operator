@@ -17,7 +17,7 @@ metadata:
       ]
     capabilities: Basic Install
     categories: OpenShift Optional
-    containerImage: quay.io/migtools/snapshot-operator:v0.0.11
+    containerImage: quay.io/kubesaw/snapshot-operator:v0.0.11
     operatorframework.io/suggested-namespace: snapshot-operator-system
     operators.operatorframework.io/builder: operator-sdk-v1.18.0+git
     operators.operatorframework.io/project_layout: go.kubebuilder.io/v3
@@ -262,12 +262,12 @@ spec:
                 - /manager
                 env:
                 - name: DownloaderImageName
-                  value: quay.io/migtools/snapshot-operator-downloader:v0.0.11
+                  value: quay.io/kubesaw/snapshot-operator-downloader:v0.0.11
                 - name: ExportImageName
-                  value: quay.io/migtools/snapshot-operator-export:v0.0.11
+                  value: quay.io/kubesaw/snapshot-operator-export:v0.0.11
                 - name: OauthImageName
                   value: quay.io/openshift/origin-oauth-proxy:4.10
-                image: quay.io/migtools/snapshot-operator:v0.0.11
+                image: quay.io/kubesaw/snapshot-operator:v0.0.11
                 imagePullPolicy: IfNotPresent
                 livenessProbe:
                   httpGet:
@@ -312,7 +312,7 @@ spec:
                 app: export-webhook
             spec:
               containers:
-              - image: quay.io/migtools/snapshot-operator-webhook:v0.0.11
+              - image: quay.io/kubesaw/snapshot-operator-webhook:v0.0.11
                 imagePullPolicy: IfNotPresent
                 name: export-webhook
                 ports:
@@ -385,17 +385,17 @@ spec:
   - gitops
   - operator
   links:
-  - name: Gitops Primer
-    url: https://github.com/migtools/gitops-primer
+  - name: Snapshot Operator
+    url: https://github.com/kubesaw/snapshot-operator
   maturity: alpha
   provider:
     name: Konveyor
   relatedImages:
-  - image: quay.io/migtools/snapshot-operator-downloader:v0.0.11
+  - image: quay.io/kubesaw/snapshot-operator-downloader:v0.0.11
     name: downloader
-  - image: quay.io/migtools/snapshot-operator-export:v0.0.11
+  - image: quay.io/kubesaw/snapshot-operator-export:v0.0.11
     name: export
-  - image: quay.io/migtools/snapshot-operator-webhook:v0.0.11
+  - image: quay.io/kubesaw/snapshot-operator-webhook:v0.0.11
     name: webhook
   - image: quay.io/openshift/origin-oauth-proxy:4.9
     name: oauth-proxy

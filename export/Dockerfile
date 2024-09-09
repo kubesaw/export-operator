@@ -5,7 +5,7 @@ RUN git checkout tags/v0.0.5
 RUN go build -o crane main.go
 
 FROM registry.access.redhat.com/ubi8/go-toolset:1.17.10-4 AS plugin-builder
-RUN mkdir -p $APP_ROOT/src/github.com/migtools
+RUN mkdir -p $APP_ROOT/src/github.com/kubesaw
 RUN curl -L -o go.mod https://raw.githubusercontent.com/kubesaw/snapshot-operator/main/go.mod
 ADD plugins $APP_ROOT/src/github.com/kubesaw/snapshot-operator/export/plugins
 WORKDIR $APP_ROOT/src/github.com/kubesaw/snapshot-operator/export/plugins
