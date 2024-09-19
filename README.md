@@ -1,7 +1,7 @@
 [![Validate Primer](https://github.com/cooktheryan/gitops-primer/actions/workflows/validate-primer.yaml/badge.svg)](https://github.com/cooktheryan/gitops-primer/actions/workflows/validate-primer.yaml)
 
 # snapshot-operator
-Snapshot Operator is an operator based on GitOps Primer (https://github.com/migtools/gitops-primer) that can be deployed 
+Snapshot Operator is a fork of GitOps Primer (https://github.com/migtools/gitops-primer) that can be deployed 
 within a Kubernetes environment to export objects out of the cluster and either make them available for download or
 store them within a Git repository.
 
@@ -15,7 +15,7 @@ make run
 ```
 
 ## Deploying without OLM
-If you would like to run the Export Operator within your environment. 
+If you would like to run the Snapshot Operator within your environment. 
 ```
 make deploy
 ```

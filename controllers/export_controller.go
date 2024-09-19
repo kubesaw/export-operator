@@ -51,8 +51,8 @@ import (
 )
 
 const (
-	snapshotOperatorLabel = "openshift.snapshot.operator"
-	finalizer             = "openshift.snapshot.operator"
+	snapshotOperatorLabel = "snapshot.dev.openshift.com"
+	finalizer             = "snapshot.dev.openshift.com"
 )
 
 // ExportReconciler reconciles a Export object
