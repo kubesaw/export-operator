@@ -30,6 +30,8 @@ import (
 	// to ensure that exec-entrypoint and run can make use of them.
 	_ "k8s.io/client-go/plugin/pkg/client/auth"
 
+	opv1 "github.com/kubesaw/snapshot-operator/api/v1alpha1"
+	"github.com/kubesaw/snapshot-operator/controllers"
 	routev1 "github.com/openshift/api/route/v1"
 	appsv1 "k8s.io/api/apps/v1"
 	batchv1 "k8s.io/api/batch/v1"
@@ -44,9 +46,6 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/cache"
 	"sigs.k8s.io/controller-runtime/pkg/healthz"
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
-
-	primerv1alpha1 "github.com/cooktheryan/gitops-primer/api/v1alpha1"
-	"github.com/cooktheryan/gitops-primer/controllers"
 	//+kubebuilder:scaffold:imports
 )
 
@@ -58,7 +57,7 @@ var (
 func init() {
 	utilruntime.Must(clientgoscheme.AddToScheme(scheme))
 	utilruntime.Must(routev1.AddToScheme(scheme))
-	utilruntime.Must(primerv1alpha1.AddToScheme(scheme))
+	utilruntime.Must(opv1.AddToScheme(scheme))
 	//+kubebuilder:scaffold:scheme
 }
 
@@ -92,34 +91,34 @@ func main() {
 		Scheme: scheme,
 		SelectorsByObject: cache.SelectorsByObject{
 			&batchv1.Job{}: {
-				Label: labels.SelectorFromSet(labels.Set{"openshift.gitops.primer": "true"}),
+				Label: labels.SelectorFromSet(labels.Set{"openshift.snapshot.operator": "true"}),
 			},
 			&rbacv1.ClusterRole{}: {
-				Label: labels.SelectorFromSet(labels.Set{"openshift.gitops.primer": "true"}),
+				Label: labels.SelectorFromSet(labels.Set{"openshift.snapshot.operator": "true"}),
 			},
 			&rbacv1.ClusterRoleBinding{}: {
-				Label: labels.SelectorFromSet(labels.Set{"openshift.gitops.primer": "true"}),
+				Label: labels.SelectorFromSet(labels.Set{"openshift.snapshot.operator": "true"}),
 			},
 			&corev1.ServiceAccount{}: {
-				Label: labels.SelectorFromSet(labels.Set{"openshift.gitops.primer": "true"}),
+				Label: labels.SelectorFromSet(labels.Set{"openshift.snapshot.operator": "true"}),
 			},
 			&corev1.PersistentVolumeClaim{}: {
-				Label: labels.SelectorFromSet(labels.Set{"openshift.gitops.primer": "true"}),
+				Label: labels.SelectorFromSet(labels.Set{"openshift.snapshot.operator": "true"}),
 			},
 			&corev1.Service{}: {
-				Label: labels.SelectorFromSet(labels.Set{"openshift.gitops.primer": "true"}),
+				Label: labels.SelectorFromSet(labels.Set{"openshift.snapshot.operator": "true"}),
 			},
 			&corev1.Secret{}: {
-				Label: labels.SelectorFromSet(labels.Set{"openshift.gitops.primer": "true"}),
+				Label: labels.SelectorFromSet(labels.Set{"openshift.snapshot.operator": "true"}),
 			},
 			&appsv1.Deployment{}: {
-				Label: labels.SelectorFromSet(labels.Set{"openshift.gitops.primer": "true"}),
+				Label: labels.SelectorFromSet(labels.Set{"openshift.snapshot.operator": "true"}),
 			},
 			&routev1.Route{}: {
-				Label: labels.SelectorFromSet(labels.Set{"openshift.gitops.primer": "true"}),
+				Label: labels.SelectorFromSet(labels.Set{"openshift.snapshot.operator": "true"}),
 			},
 			&networkingv1.NetworkPolicy{}: {
-				Label: labels.SelectorFromSet(labels.Set{"openshift.gitops.primer": "true"}),
+				Label: labels.SelectorFromSet(labels.Set{"openshift.snapshot.operator": "true"}),
 			},
 		},
 	})
@@ -178,7 +177,7 @@ func addPodSecurityPrivilegedLabels() error {
 	}
 	minVer := version.Minor
 	if !valid.IsInt(minVer) {
-		minVer = minVer[:len(minVer) - 1]
+		minVer = minVer[:len(minVer)-1]
 	}
 	minor, err := strconv.Atoi(minVer)
 	if err != nil {
@@ -190,10 +189,10 @@ func addPodSecurityPrivilegedLabels() error {
 		return nil
 	}
 
-	operatorNamespace, err := clientset.CoreV1().Namespaces().Get(context.TODO(), "gitops-primer-system", metav1.GetOptions{})
+	operatorNamespace, err := clientset.CoreV1().Namespaces().Get(context.TODO(), "snapshot-operator-system", metav1.GetOptions{})
 	if err != nil {
 		if errors.IsNotFound(err) {
-			setupLog.Info("gitops-primer-system namespace not found. If installing operator in any other namespace, please add appropriate namespace labels to make sure primer works in OpenShift environment 4.11+")
+			setupLog.Info("snapshot-operator-system namespace not found. If installing operator in any other namespace, please add appropriate namespace labels to make sure primer works in OpenShift environment 4.11+")
 			return nil
 		}
 		setupLog.Error(err, "problem getting operator namespace")

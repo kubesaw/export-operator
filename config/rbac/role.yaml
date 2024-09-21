@@ -16,7 +16,7 @@ rules:
 - apiGroups:
   - ""
   resourceNames:
-  - gitops-primer-system
+  - snapshot-operator-system
   resources:
   - namespaces
   verbs:

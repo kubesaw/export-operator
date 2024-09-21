@@ -1,4 +1,4 @@
-module github.com/cooktheryan/gitops-primer
+module github.com/kubesaw/snapshot-operator
 
 go 1.17
 

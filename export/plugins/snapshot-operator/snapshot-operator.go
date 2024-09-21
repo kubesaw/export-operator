@@ -11,6 +11,7 @@ import (
 
 var exportName = []string{"primer-export-"}
 
+// Filter out the resources created by the export operator controller
 func main() {
 	cli.RunAndExit(cli.NewCustomPlugin("WhiteoutExportPlugin", "v1", nil, Run))
 }
